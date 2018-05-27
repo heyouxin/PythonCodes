@@ -1,0 +1,136 @@
+1522034227104	geckodriver	INFO	Listening on 127.0.0.1:50959
+1522034227643	hyper::server	ERROR	Peer Name error: Error { repr: Custom(Custom { kind: InvalidInput, error: StringError("invalid argument") }) }
+1522034228652	hyper::server	ERROR	Peer Name error: Error { repr: Custom(Custom { kind: InvalidInput, error: StringError("invalid argument") }) }
+1522034228665	hyper::server	ERROR	Peer Name error: Error { repr: Custom(Custom { kind: InvalidInput, error: StringError("invalid argument") }) }
+1522034417157	geckodriver	INFO	Listening on 127.0.0.1:52100
+1522034417924	hyper::server	ERROR	Peer Name error: Error { repr: Custom(Custom { kind: InvalidInput, error: StringError("invalid argument") }) }
+1522034418926	hyper::server	ERROR	Peer Name error: Error { repr: Custom(Custom { kind: InvalidInput, error: StringError("invalid argument") }) }
+1522034418937	hyper::server	ERROR	Peer Name error: Error { repr: Custom(Custom { kind: InvalidInput, error: StringError("invalid argument") }) }
+1522034465915	geckodriver	INFO	Listening on 127.0.0.1:52357
+1522034466677	hyper::server	ERROR	Peer Name error: Error { repr: Custom(Custom { kind: InvalidInput, error: StringError("invalid argument") }) }
+1522034467680	hyper::server	ERROR	Peer Name error: Error { repr: Custom(Custom { kind: InvalidInput, error: StringError("invalid argument") }) }
+1522034467695	hyper::server	ERROR	Peer Name error: Error { repr: Custom(Custom { kind: InvalidInput, error: StringError("invalid argument") }) }
+1522034648786	geckodriver	INFO	Listening on 127.0.0.1:53549
+1522034649512	hyper::server	ERROR	Peer Name error: Error { repr: Custom(Custom { kind: InvalidInput, error: StringError("invalid argument") }) }
+1522034650516	hyper::server	ERROR	Peer Name error: Error { repr: Custom(Custom { kind: InvalidInput, error: StringError("invalid argument") }) }
+1522034650519	hyper::server	ERROR	Peer Name error: Error { repr: Custom(Custom { kind: InvalidInput, error: StringError("invalid argument") }) }
+1522034748320	geckodriver	INFO	Listening on 127.0.0.1:54096
+1522034749041	hyper::server	ERROR	Peer Name error: Error { repr: Custom(Custom { kind: InvalidInput, error: StringError("invalid argument") }) }
+1522034750055	hyper::server	ERROR	Peer Name error: Error { repr: Custom(Custom { kind: InvalidInput, error: StringError("invalid argument") }) }
+1522034750058	hyper::server	ERROR	Peer Name error: Error { repr: Custom(Custom { kind: InvalidInput, error: StringError("invalid argument") }) }
+1522034779397	geckodriver	INFO	Listening on 127.0.0.1:54192
+1522034780188	hyper::server	ERROR	Peer Name error: Error { repr: Custom(Custom { kind: InvalidInput, error: StringError("invalid argument") }) }
+1522034781197	hyper::server	ERROR	Peer Name error: Error { repr: Custom(Custom { kind: InvalidInput, error: StringError("invalid argument") }) }
+1522034781198	hyper::server	ERROR	Peer Name error: Error { repr: Custom(Custom { kind: InvalidInput, error: StringError("invalid argument") }) }
+1522034820035	geckodriver	INFO	Listening on 127.0.0.1:54277
+1522034820820	hyper::server	ERROR	Peer Name error: Error { repr: Custom(Custom { kind: InvalidInput, error: StringError("invalid argument") }) }
+1522034821838	hyper::server	ERROR	Peer Name error: Error { repr: Custom(Custom { kind: InvalidInput, error: StringError("invalid argument") }) }
+1522034821850	hyper::server	ERROR	Peer Name error: Error { repr: Custom(Custom { kind: InvalidInput, error: StringError("invalid argument") }) }
+1522034846552	geckodriver	INFO	Listening on 127.0.0.1:54283
+1522034847338	hyper::server	ERROR	Peer Name error: Error { repr: Custom(Custom { kind: InvalidInput, error: StringError("invalid argument") }) }
+1522034848349	hyper::server	ERROR	Peer Name error: Error { repr: Custom(Custom { kind: InvalidInput, error: StringError("invalid argument") }) }
+1522034848350	hyper::server	ERROR	Peer Name error: Error { repr: Custom(Custom { kind: InvalidInput, error: StringError("invalid argument") }) }
+1522034939988	geckodriver	INFO	Listening on 127.0.0.1:54315
+1522034940734	hyper::server	ERROR	Peer Name error: Error { repr: Custom(Custom { kind: InvalidInput, error: StringError("invalid argument") }) }
+1522034941738	hyper::server	ERROR	Peer Name error: Error { repr: Custom(Custom { kind: InvalidInput, error: StringError("invalid argument") }) }
+1522034941750	hyper::server	ERROR	Peer Name error: Error { repr: Custom(Custom { kind: InvalidInput, error: StringError("invalid argument") }) }
+1522035082690	geckodriver	INFO	Listening on 127.0.0.1:49888
+1522035083348	hyper::server	ERROR	Peer Name error: Error { repr: Custom(Custom { kind: InvalidInput, error: StringError("invalid argument") }) }
+1522035084351	hyper::server	ERROR	Peer Name error: Error { repr: Custom(Custom { kind: InvalidInput, error: StringError("invalid argument") }) }
+1522035084353	hyper::server	ERROR	Peer Name error: Error { repr: Custom(Custom { kind: InvalidInput, error: StringError("invalid argument") }) }
+1522035289789	geckodriver	INFO	Listening on 127.0.0.1:50087
+1522035290580	hyper::server	ERROR	Peer Name error: Error { repr: Custom(Custom { kind: InvalidInput, error: StringError("invalid argument") }) }
+1522035291598	hyper::server	ERROR	Peer Name error: Error { repr: Custom(Custom { kind: InvalidInput, error: StringError("invalid argument") }) }
+1522035291602	hyper::server	ERROR	Peer Name error: Error { repr: Custom(Custom { kind: InvalidInput, error: StringError("invalid argument") }) }
+1522035507503	geckodriver	INFO	Listening on 127.0.0.1:50495
+1522035508306	hyper::server	ERROR	Peer Name error: Error { repr: Custom(Custom { kind: InvalidInput, error: StringError("invalid argument") }) }
+1522035509324	hyper::server	ERROR	Peer Name error: Error { repr: Custom(Custom { kind: InvalidInput, error: StringError("invalid argument") }) }
+1522035509326	hyper::server	ERROR	Peer Name error: Error { repr: Custom(Custom { kind: InvalidInput, error: StringError("invalid argument") }) }
+1522045808890	geckodriver	INFO	Listening on 127.0.0.1:51615
+1522045809611	hyper::server	ERROR	Peer Name error: Error { repr: Custom(Custom { kind: InvalidInput, error: StringError("invalid argument") }) }
+1522045810632	hyper::server	ERROR	Peer Name error: Error { repr: Custom(Custom { kind: InvalidInput, error: StringError("invalid argument") }) }
+1522045810636	hyper::server	ERROR	Peer Name error: Error { repr: Custom(Custom { kind: InvalidInput, error: StringError("invalid argument") }) }
+1522045951160	geckodriver	INFO	Listening on 127.0.0.1:51937
+1522045951907	hyper::server	ERROR	Peer Name error: Error { repr: Custom(Custom { kind: InvalidInput, error: StringError("invalid argument") }) }
+1522045952920	hyper::server	ERROR	Peer Name error: Error { repr: Custom(Custom { kind: InvalidInput, error: StringError("invalid argument") }) }
+1522045952922	hyper::server	ERROR	Peer Name error: Error { repr: Custom(Custom { kind: InvalidInput, error: StringError("invalid argument") }) }
+1522045964382	geckodriver	INFO	Listening on 127.0.0.1:51943
+1522045965132	hyper::server	ERROR	Peer Name error: Error { repr: Custom(Custom { kind: InvalidInput, error: StringError("invalid argument") }) }
+1522045966143	hyper::server	ERROR	Peer Name error: Error { repr: Custom(Custom { kind: InvalidInput, error: StringError("invalid argument") }) }
+1522045966155	hyper::server	ERROR	Peer Name error: Error { repr: Custom(Custom { kind: InvalidInput, error: StringError("invalid argument") }) }
+1522046009380	geckodriver	INFO	geckodriver 0.20.0
+1522046009410	geckodriver	INFO	Listening on 127.0.0.1:51956
+1522046011123	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "-marionette" "-profile" "C:\\Users\\heyouxin\\AppData\\Local\\Temp\\rust_mozprofile.VXgGiPSBT4FO"
+Unable to read VR Path Registry from C:\Users\heyouxin\AppData\Local\openvr\openvrpaths.vrpath
+1522046012566	Marionette	INFO	Enabled via --marionette
+Unable to read VR Path Registry from C:\Users\heyouxin\AppData\Local\openvr\openvrpaths.vrpath
+Unable to read VR Path Registry from C:\Users\heyouxin\AppData\Local\openvr\openvrpaths.vrpath
+Unable to read VR Path Registry from C:\Users\heyouxin\AppData\Local\openvr\openvrpaths.vrpath
+1522046016352	Marionette	INFO	Listening on port 51964
+1522046016464	Marionette	WARN	TLS certificate errors will be ignored for this session
+Unable to read VR Path Registry from C:\Users\heyouxin\AppData\Local\openvr\openvrpaths.vrpath
+JavaScript error: https://ss1.bdstatic.com/5eN1bjq8AAUYm2zgoY3K/r/www/cache/static/protocol/https/plugins/every_cookie_4644b13.js, line 4: ReferenceError: c is not defined
+JavaScript error: https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su?wd=Eastm&json=1&p=3&sid=1423_21119_20927&req=2&csor=5&pwd=East&cb=jQuery1102028773244929843034_1522046018790&_=1522046018795, line 1: TypeError: jQuery1102028773244929843034_1522046018790 is not a function
+JavaScript error: https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su?wd=E&json=1&p=3&sid=1423_21119_20927&req=2&csor=1&cb=jQuery1102028773244929843034_1522046018790&_=1522046018791, line 1: TypeError: jQuery1102028773244929843034_1522046018790 is not a function
+JavaScript error: https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su?wd=Eastmoun&json=1&p=3&sid=1423_21119_20927&req=2&csor=8&pwd=Eastmou&cb=jQuery1102028773244929843034_1522046018790&_=1522046018798, line 1: TypeError: jQuery1102028773244929843034_1522046018790 is not a function
+JavaScript error: https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su?wd=Eastmou&json=1&p=3&sid=1423_21119_20927&req=2&csor=7&pwd=Eastmo&cb=jQuery1102028773244929843034_1522046018790&_=1522046018797, line 1: TypeError: jQuery1102028773244929843034_1522046018790 is not a function
+JavaScript error: https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su?wd=Eastmount&json=1&p=3&sid=1423_21119_20927&req=2&csor=9&pwd=Eastmoun&cb=jQuery1102028773244929843034_1522046018790&_=1522046018799, line 1: TypeError: jQuery1102028773244929843034_1522046018790 is not a function
+JavaScript error: https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su?wd=East&json=1&p=3&sid=1423_21119_20927&req=2&csor=4&pwd=Eas&cb=jQuery1102028773244929843034_1522046018790&_=1522046018794, line 1: TypeError: jQuery1102028773244929843034_1522046018790 is not a function
+JavaScript error: https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su?wd=Ea&json=1&p=3&sid=1423_21119_20927&req=2&csor=2&pwd=E&cb=jQuery1102028773244929843034_1522046018790&_=1522046018792, line 1: TypeError: jQuery1102028773244929843034_1522046018790 is not a function
+JavaScript error: https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su?wd=Eas&json=1&p=3&sid=1423_21119_20927&req=2&csor=3&pwd=Ea&cb=jQuery1102028773244929843034_1522046018790&_=1522046018793, line 1: TypeError: jQuery1102028773244929843034_1522046018790 is not a function
+JavaScript error: https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su?wd=Eastmo&json=1&p=3&sid=1423_21119_20927&req=2&csor=6&pwd=Eastm&cb=jQuery1102028773244929843034_1522046018790&_=1522046018796, line 1: TypeError: jQuery1102028773244929843034_1522046018790 is not a function
+[Parent 7740, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Parent 7740, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 19044, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+*** UTM:SVC TimerManager:registerTimer called after profile-before-change notification. Ignoring timer registration for id: telemetry_modules_ping
+
+###!!! [Child][MessageChannel::SendAndWait] Error: Channel error: cannot send/recv
+
+1522046081355	geckodriver	INFO	geckodriver 0.20.0
+1522046081380	geckodriver	INFO	Listening on 127.0.0.1:52040
+1522046083111	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "-marionette" "-profile" "C:\\Users\\heyouxin\\AppData\\Local\\Temp\\rust_mozprofile.kXewQXdvc1Fh"
+Unable to read VR Path Registry from C:\Users\heyouxin\AppData\Local\openvr\openvrpaths.vrpath
+1522046084416	Marionette	INFO	Enabled via --marionette
+Unable to read VR Path Registry from C:\Users\heyouxin\AppData\Local\openvr\openvrpaths.vrpath
+Unable to read VR Path Registry from C:\Users\heyouxin\AppData\Local\openvr\openvrpaths.vrpath
+Unable to read VR Path Registry from C:\Users\heyouxin\AppData\Local\openvr\openvrpaths.vrpath
+1522046087032	Marionette	INFO	Listening on port 52047
+1522046087316	Marionette	WARN	TLS certificate errors will be ignored for this session
+Unable to read VR Path Registry from C:\Users\heyouxin\AppData\Local\openvr\openvrpaths.vrpath
+[Parent 20660, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Parent 20660, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 20536, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 20536, Chrome_ChildTh[Child 17884, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 17884, Chr[Parent 20660, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+*** UTM:SVC TimerManager:registerTimer called after profile-before-change notification. Ignoring timer registration for id: telemetry_modules_ping
+
+###!!! [Child][MessageChannel::SendAndWait] Error: Channel error: cannot send/recv
+
+t 21184, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Parent 21184, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 9968, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 20492, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 20492, Chrom[Parent 21184, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+*** UTM:SVC TimerManager:registerTimer called after profile-before-change notification. Ignoring timer registration for id: telemetry_modules_ping
+
+###!!! [Child][MessageChannel::SendAndWait] Error: Channel error: cannot send/recv
+
+1522046137956	geckodriver	INFO	geckodriver 0.20.0
+1522046137999	geckodriver	INFO	Listening on 127.0.0.1:52114
+1522046139768	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "-marionette" "-profile" "C:\\Users\\heyouxin\\AppData\\Local\\Temp\\rust_mozprofile.Uldw7v6xTF8S"
+Unable to read VR Path Registry from C:\Users\heyouxin\AppData\Local\openvr\openvrpaths.vrpath
+1522046141152	Marionette	INFO	Enabled via --marionette
+Unable to read VR Path Registry from C:\Users\heyouxin\AppData\Local\openvr\openvrpaths.vrpath
+Unable to read VR Path Registry from C:\Users\heyouxin\AppData\Local\openvr\openvrpaths.vrpath
+Unable to read VR Path Registry from C:\Users\heyouxin\AppData\Local\openvr\openvrpaths.vrpath
+1522046143730	Marionette	INFO	Listening on port 52120
+1522046143960	Marionette	WARN	TLS certificate errors will be ignored for this session
+Unable to read VR Path Registry from C:\Users\heyouxin\AppData\Local\openvr\openvrpaths.vrpath
+[Parent 22484, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 21484, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 21484, Chrome_ChildTh[Parent 22484, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 16316, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 16316, Chro*** UTM:SVC TimerManager:registerTimer called after profile-before-change notification. Ignoring timer registration for id: telemetry_modules_ping
+
+###!!! [Child][MessageChannel::SendAndWait] Error: Channel error: cannot send/recv
+

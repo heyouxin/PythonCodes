@@ -21,7 +21,7 @@ class MyThread(threading.Thread):
         self.name = name
         self.data_range = data_range
  
-    def run(self) :
+    def run() :
 
         webScraping(self.data_range,self.name)
  
@@ -46,10 +46,9 @@ if __name__ == '__main__':
     thread3.join()
     thread4.join()
     
-    
- '''
-            webScraping(date_1[946:949],"Thread-test")
-        thread_test = MyThread(101, "Thread-test", date_1[945:947])
-        thread_test.start()
-        thread_test.join()
- ''' 
+'''
+    webScraping(date_1[946:949],"Thread-test")
+thread_test = MyThread(101, "Thread-test", date_1[945:947])
+thread_test.start()
+thread_test.join()
+''' 

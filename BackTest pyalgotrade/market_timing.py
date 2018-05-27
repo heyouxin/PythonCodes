@@ -7,6 +7,7 @@ from pyalgotrade.technical import cumret
 from pyalgotrade.stratanalyzer import sharpe
 from pyalgotrade.stratanalyzer import returns
 import tushare as ts
+import pandas as pd
 from utils import dataFramefeed
 class MarketTiming(strategy.BacktestingStrategy):
     def __init__(self, feed, instrumentsByClass, initialCash):
@@ -18,12 +19,19 @@ class MarketTiming(strategy.BacktestingStrategy):
         self.__instrumentsByClass = instrumentsByClass
         self.__rebalanceMonth = None
         self.__sharesToBuy = {}
-        self.__position = None
+        self.__position = {}
         # Initialize indicators for each instrument.
         # 定义sma的一个字典   标的：sma
         self.__sma = {}
         self.__dea = {}
         self.__priceDS={}
+        self.__takeprofit={}
+        self.__stoploss={}
+        self.__order={}
+        self.__cost={}
+        #self.__oderID=1
+        takeprofit=0.1
+        stoploss=0.1
         for assetClass in instrumentsByClass:
             for instrument in instrumentsByClass[assetClass]:
                 priceDS = feed[instrument].getPriceDataSeries()
@@ -37,6 +45,10 @@ class MarketTiming(strategy.BacktestingStrategy):
                 __macd = macd.MACD(self.__priceDS[instrument],12,26,9)
                 #__macd = macd.MACD(priceDS,12,26,9)
                 self.__dea[instrument]=__macd.getSignal()
+                #self.__cost[instrument]=None
+                self.__takeprofit[instrument]=takeprofit#设置止盈点
+                self.__stoploss[instrument]=stoploss#设置止损点
+                self.__cost[instrument]=0
                 
     def onEnterOk(self, position):
         execInfo = position.getEntryOrder().getExecutionInfo()
@@ -56,40 +68,7 @@ class MarketTiming(strategy.BacktestingStrategy):
     def _shouldRebalance(self, dateTime):
         return dateTime.month != self.__rebalanceMonth
 
-    def _getRank(self, instrument):
-        # If the price is below the SMA, then this instrument doesn't rank at
-        # all.
-        smas = self.__sma[instrument]
-        price = self.getLastPrice(instrument)
-        if len(smas) == 0 or smas[-1] is None or price < smas[-1]:
-            return None
-
-        # Rank based on 20 day returns.
-        ret = None
-        lookBack = 20
-        priceDS = self.getFeed()[instrument].getPriceDataSeries()
-        if len(priceDS) >= lookBack and smas[-1] is not None and smas[-1*lookBack] is not None:
-            ret = (priceDS[-1] - priceDS[-1*lookBack]) / float(priceDS[-1*lookBack])
-        return ret
-
-    def _getTopByClass(self, assetClass):
-        # Find the instrument with the highest rank.
-        ret = None
-        highestRank = None
-        for instrument in self.__instrumentsByClass[assetClass]:
-            rank = self._getRank(instrument)
-            if rank is not None and (highestRank is None or rank > highestRank):
-                highestRank = rank
-                ret = instrument
-        return ret
-
-    #get the Ret of the highest instrument
-    def _getTop(self):
-        ret = {}
-        for assetClass in self.__instrumentsByClass:
-            ret[assetClass] = self._getTopByClass(assetClass)
-        return ret
-
+  
     #设置下单
     def _placePendingOrders(self):
         #可用资金设置为总资金的90%以防价格变化太快
@@ -111,6 +90,9 @@ class MarketTiming(strategy.BacktestingStrategy):
             if orderSize != 0:
                 self.info("Placing market order for %d %s shares" % (orderSize, instrument))
                 self.marketOrder(instrument, orderSize, goodTillCanceled=True)
+                self.__cost[instrument]=self.getLastPrice(instrument)
+                #记录每个订单号、代码、价格、手数
+                #self.__order[str(orderID)]=[instrument,orderSize,]
                 self.__sharesToBuy[instrument] -= orderSize
 
     #打印日志
@@ -128,7 +110,7 @@ class MarketTiming(strategy.BacktestingStrategy):
         #self.info(self.getLastPrice('002493'))
         #获得最近DEA
         #self.info(self.__dea['002493'][-1])
-        self.info("Rebalancing")
+        #self.info("Rebalancing")
         '''
         try:
             self.info(self.__dea['002493'][-2])
@@ -139,64 +121,106 @@ class MarketTiming(strategy.BacktestingStrategy):
         for order in self.getBroker().getActiveOrders():
             self.getBroker().cancelOrder(order)
 
+        ##给每个标的等权益权重分配资金
         cashPerAssetClass = self.getBroker().getEquity() / float(len(self.__instrumentsByClass))
+        #cashPerAssetClass = self.getBroker().getCash() / float(len(self.__instrumentsByClass))
+        
         self.__sharesToBuy = {}
-
-        # Calculate which positions should be open during the next period.
-        topByClass = self._getTop()
-        for assetClass in topByClass:
-            instrument = topByClass[assetClass]
-            self.info("Best for class %s: %s" % (assetClass, instrument))
-            if instrument is not None:
+        
+        instruments_buy=self.findByDEA()
+        ##计算开仓
+        for instrument in instruments_buy :
+            #self.info("Best for  %s" % ( instrument))
+            if instrument is not None  :
+                #not in self.getBroker().getPositions()
+                #self.info("Best for  %s" % ( instrument))
                 lastPrice = self.getLastPrice(instrument)
-                cashForInstrument = cashPerAssetClass - self.getBroker().getShares(instrument) * lastPrice
+                ##每个标的应有的资金
+           
+                if instrument in self.getBroker().getPositions():
+                    cashForInstrument = cashPerAssetClass/2 
+                    #cashForInstrument =  self.getBroker().getShares(instrument) * lastPrice - cashPerAssetClass
+                else:
+                    cashForInstrument = cashPerAssetClass 
+                #- self.getBroker().getShares(instrument) * lastPrice
                 # This may yield a negative value and we have to reduce this
                 # position.
-                self.__sharesToBuy[instrument] = int(cashForInstrument / lastPrice)
-
-        # Calculate which positions should be closed.
-        for instrument in self.getBroker().getPositions():
-            if instrument not in topByClass.values():
-                currentShares = self.getBroker().getShares(instrument)
-                assert(instrument not in self.__sharesToBuy)
-                self.__sharesToBuy[instrument] = currentShares * -1
+                if cashForInstrument>0:
+                    self.__sharesToBuy[instrument] = int(cashForInstrument / lastPrice)
+        
+        ##计算需要卖出的仓位
+        for instrument in self.getBroker().getPositions() :
+            if instrument not in self.__sharesToBuy:
+                #self.info('instrument:%s price:%s  cost:%s'% (instrument,self.getLastPrice(instrument),self.__cost[instrument]))
+                rate=(self.getLastPrice(instrument)-self.__cost[instrument])/self.__cost[instrument]
+                if rate<= -self.__stoploss[instrument] or rate>=self.__takeprofit[instrument]:
+                    currentShares = self.getBroker().getShares(instrument)
+                    #assert(instrument not in self.__sharesToBuy)
+                    self.__sharesToBuy[instrument] = currentShares * -1
+        
 
     def getSMA(self, instrument):
         return self.__sma[instrument]
 
-    #找买点
+    #通过DEA指标找买点
     def findByDEA(self):
+        instruments_buy=[]
         lookBack=30
-        priceDS=self.__priceDS['002493']
-        #priceDS = self.getFeed()['002493'].getPriceDataSeries()
+        for instrument in self.__instrumentsByClass:
+            priceDS=self.__priceDS[instrument]
+            #priceDS = self.getFeed()['002493'].getPriceDataSeries()
+            
+            #if len(priceDS) >= lookBack and self.__dea['002493'][-1] > 0 and self.__dea['002493'][-1*lookBack] is not None:
         
-        #if len(priceDS) >= lookBack and self.__dea['002493'][-1] > 0 and self.__dea['002493'][-1*lookBack] is not None:
-    
-        if len(self.__priceDS['002493']) >= lookBack and self.__dea['002493'][-1] > 0 and self.__dea['002493'][-1*lookBack] is not None:
-       
-            #if self.__dea['002493'][-1]>0:
-            for i in range(2,31):
-                if(priceDS[-1*i]==min(priceDS[-1*i:-1])):
-                    for j in range(i+1,31):
-                        if(priceDS[-1*j]==max(priceDS[(-1*j):(-i)]) and self.__dea['002493'][-1*j]>0 and priceDS[-1*i]==min(priceDS[-1*j:-1])):
-                            self.info('buy!!!')
-                            if self.__position is None:
-                                self.__position = self.enterLong('002493', 10, True)
-                            # Check if we have to exit the position.
-                            '''
-                            elif bar.getPrice() < self.__sma[-1] and not self.__position.exitActive():
-                                self.__position.exitMarket()
-                            '''
-                            return
-                    #if self.__dea['002493'][-1*i]<0:
+            if len(self.__priceDS[instrument]) >= lookBack and self.__dea[instrument][-1] > 0 and self.__dea[instrument][-1*lookBack] is not None:
+           
+                #if self.__dea['002493'][-1]>0:
+                for i in range(2,31):
+                    if(priceDS[-1*i]==min(priceDS[-1*i:-1])):
+                        for j in range(i+1,31):
+                            if(priceDS[-1*j]==max(priceDS[(-1*j):(-i)]) and self.__dea[instrument][-1*j]>0 and priceDS[-1*i]==min(priceDS[-1*j:-1])):
+                                #self.info('buy!!!')
+                                instruments_buy.append(instrument)           
+                                #if self.__position is None:
+                                '''
+                                try:
+                                    shares = self.getBroker().getShares(instrument)
+                                    if shares==0:
+                                        cashForInstrument = self.getBroker().getCash() * 0.1
+                                        lastPrice = self.getLastPrice(instrument)
+                                        orderSize = int(cashForInstrument / lastPrice)
+                                        ##两种下单方式的不同？
+                                        #self.marketOrder(instrument, orderSize)
+                                        self.__position[instrument] = self.enterLong(instrument, orderSize, True)
+                                        self.__cost[instrument]=lastPrice
+                                except:
+                                    pass
+                                '''    
+
+        return list(set(instruments_buy))
 
     
     def onBars(self, bars):
-        for assetClass in instrumentsByClass:
-            for instrument in instrumentsByClass[assetClass]:
+        '''
+        for assetClass in self.__instrumentsByClass:
+            for instrument in self.__instrumentsByClass[assetClass]:
                 if self.__dea[instrument][-1] is None:
                     return
-        self.findByDEA()
+        '''
+        self._rebalance()
+
+        self._placePendingOrders()
+        #self.findByDEA()
+ 
+       
+        '''
+        #测试价格正确性
+        for assetClass in self.__instrumentsByClass:
+            for instrument in self.__instrumentsByClass[assetClass]:
+                bar = bars[instrument]
+                self.info('%s: open：%s high:%s low:%s close:%s AdjClose:%s '%(instrument,bar.getOpen(),bar.getHigh(),bar.getLow(),bar.getClose(),bar.getAdjClose()))
+        
+        '''
         '''
         try:
             self.info(priceDS[-3:-1])
@@ -206,13 +230,12 @@ class MarketTiming(strategy.BacktestingStrategy):
             pass
         '''
 
-
         '''
         #取当前行情
         #self.info(bars['002493'].getPrice())
         #print bars['002493'].getPrice()
         currentDateTime = bars.getDateTime()
-      
+     
         #当前月份是否要重新调整 默认为是  这段代码是说每月调一次仓
         if self._shouldRebalance(currentDateTime):
             #__rebalanceMonth从none 置为当前月份   
@@ -222,8 +245,20 @@ class MarketTiming(strategy.BacktestingStrategy):
         self._placePendingOrders()
         '''
 
-def main(plot):
-    initialCash = 10000
+def main(plot,sz50,HQ,HQ_hs300):
+    initialCash = 10000000
+    sz50_code=sz50['code']
+    feed = dataFramefeed.Feed()
+    feed.addBarsFromDataFrame("hs300", HQ_hs300)
+    instrumentsByClass={}
+    
+    for i in range(0,len(sz50_code)):
+        l=[]
+        l.append(sz50_code[i])
+        instrumentsByClass[sz50_code[i]]=l
+        feed.addBarsFromDataFrame(sz50_code[i], HQ[sz50_code[i]])
+    HQ['600000']
+    '''    
     instrumentsByClass = {
         "002768": ["002768"],
         "002493": ["002493"]
@@ -242,13 +277,13 @@ def main(plot):
 
     
     dat=ts.get_hist_data("002768",start='2017-01-01',end='2017-12-27')
-    dat['Adj Close']=dat['close']
+    dat['Adj Close']=dat['close']  
     feed.addBarsFromDataFrame("002768", dat.ix[:,(0,1,2,3,4,14)])
 
     dat=ts.get_hist_data('002493',start='2017-01-01',end='2017-12-27')
     dat['Adj Close']=dat['close']
     feed.addBarsFromDataFrame("002493", dat.ix[:,(0,1,2,3,4,14)])
-    
+    '''
     
     
     strat = MarketTiming(feed, instrumentsByClass, initialCash)
@@ -260,6 +295,7 @@ def main(plot):
     if plot:
         plt = plotter.StrategyPlotter(strat, False, False, True)
         plt.getOrCreateSubplot("cash").addCallback("Cash", lambda x: strat.getBroker().getCash())
+        #plt.getOrCreateSubplot("cash").addCallback("Cash", strat.getBroker().getCash())
         # Plot strategy vs. benchmark HS300 cumulative returns.
         plt.getOrCreateSubplot("returns").addDataSeries("hs300", cumret.CumulativeReturn(feed["hs300"].getPriceDataSeries()))
         plt.getOrCreateSubplot("returns").addDataSeries("Strategy", returnsAnalyzer.getCumulativeReturns())
@@ -273,4 +309,56 @@ def main(plot):
 
 
 if __name__ == "__main__":
-    main(True)
+       
+    HQ={}
+    
+    sz50=ts.get_sz50s()
+    sz50_code=sz50['code']
+    '''
+    sz50.to_csv('sz50.csv',encoding='utf8',index_label =False)
+    sz50_2=pd.read_csv("sz50.csv")
+    '''
+    dat=ts.get_hist_data("hs300",start='2017-01-01',end='2017-12-31')
+    dat['Adj Close']=dat['close']
+    HQ_hs300=dat.ix[:,(0,1,2,3,4,13)]
+    '''
+    HQ_hs300.to_csv('HQ_hs300.csv',encoding='utf8',index_label =False)
+    HQ_hs300_2=pd.read_csv("HQ_hs300.csv")
+    '''
+
+    for i in range(0,len(sz50_code)):
+        dat=ts.get_hist_data(sz50_code[i],start='2017-01-01',end='2017-12-31')
+        dat['Adj Close']=dat['close']
+        HQ[sz50_code[i]]=dat.ix[:,(0,1,2,3,4,14)]
+        
+    #sz50=pd.read_csv("sz50.csv")
+    #HQ=pd.read_csv("HQ_hs300.csv")
+    #HQ=pd.read_csv()
+    main(True,sz50,HQ,HQ_hs300)
+
+
+
+
+
+'''
+break_flag=False
+for i in range(10):
+    print("爷爷层")
+    for j in range(10):
+        print("爸爸层")
+        for k in range(10):
+            print("孙子层")
+            if k==3:
+                break_flag=True
+                break                    #跳出孙子层循环，继续向下运行
+        if break_flag==True:
+            break                        #满足条件，运行break跳出爸爸层循环，向下运行
+    if break_flag==True:
+        break                            #满足条件，运行break跳出爷爷层循环，结束全部循环，向下运行
+print("keep going...")
+
+
+'''
+
+
+
