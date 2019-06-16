@@ -2,7 +2,7 @@
 """
 Created on Tue Mar 27 15:15:41 2018
 
-@author: 何友鑫
+@author: 
 """
 
 from by_PhantomJS import lecPhantomJS
@@ -27,23 +27,23 @@ class MyThread(threading.Thread):
 
 if __name__ == '__main__':
 
-   
-    thread1 = MyThread(1, '15420161152166','066547')
+    #账号 密码
+    thread1 = MyThread(1, '15420161152166','')
     
     
     '''
-    thread2 = MyThread(1, '15420161152168','123qwe')
+    thread2 = MyThread(1, '15420161152168','')
   
-    thread3 = MyThread(100, '15420171151968','046600')
+    thread3 = MyThread(100, '15420171151968','')
     
  
-    thread4 = MyThread(2, '15320161152320','wskdcqqq')
+    thread4 = MyThread(2, '15320161152320','')
   
-    thread5 = MyThread(1, '15320161152320','wskdcqqq')
-    thread6 = MyThread(2, '15320161152320','wskdcqqq')
+    thread5 = MyThread(1, '15320161152320','')
+    thread6 = MyThread(2, '15320161152320','')
     
-    thread7 = MyThread(1, '15320161152320','wskdcqqq')
-    thread8 = MyThread(2, '15320161152320','wskdcqqq')
+    thread7 = MyThread(1, '15320161152320','')
+    thread8 = MyThread(2, '15320161152320','')
     '''
     
     #开启线程

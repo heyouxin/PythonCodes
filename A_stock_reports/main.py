@@ -5,8 +5,8 @@ Created on Thu Jan 25 11:08:14 2018
 @author: 何友鑫
 """
 
-import os 
-import re 
+import os
+import re
 import pandas as pd
 
 year='2016'

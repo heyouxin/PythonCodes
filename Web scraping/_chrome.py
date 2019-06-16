@@ -2,7 +2,7 @@
 """
 Created on Mon Mar 26 11:18:39 2018
 
-@author: 何友鑫
+@author: 
 """
 
 import os  
@@ -12,16 +12,6 @@ import time
 
 
 def lecChrome(n,ID,password):
-    '''
-    global user_id,password
-    ID='15320161152320'
-    password='wskdcqqq'
-    n=1
-   
-    chromedriver = "C:\chromedriver.exe"  
-    os.environ["webdriver.chrome.driver"] = chromedriver       
-    browser = webdriver.Chrome(chromedriver)  
-    '''   
 
     
     for times in range(0,9):

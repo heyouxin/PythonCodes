@@ -10,7 +10,7 @@ from selenium.webdriver.common.keys import Keys
 import time   
 
 import re
-last_name='静轩' 
+last_name='静萱' 
 f = open("中国所有姓.txt")  
 lines = f.readlines() 
 f.close()  

@@ -89,7 +89,7 @@ def set_conn():
 #2.表中加入上市年份、退市年份
 def add_report_year():
     set_sql(gdb,ghost,guser,gpassword,gdatabase)
-    df_static_bond=pd.read_sql('select A.security_id,A.institution_id,A.fullname,A.`default`,A.listed_date,A.delisted_date,B.default_ann_date,B.is_bond_default from static_bond A LEFT JOIN bond_default B ON (A.security_id = B.security_id)',conn)
+    df_static_bond=pd.read_sql('select A.security_id,A.institution_id,A.fullname,A.`default`,A.listed_date,A.delisted_date,B.default_ann_date,B.is_bond_default from static_bond A  LEFT JOIN bond_default B ON (A.security_id = B.security_id)',conn)
     conn.close()
     df_static_bond2=df_static_bond
     df_static_bond2['listed_year']=''
