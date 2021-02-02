@@ -41,4 +41,6 @@ def calc_pi():
 
     return 4*cnt/n
 
-calc_pi()
+if __name__ == '__main__':
+
+    calc_pi()
